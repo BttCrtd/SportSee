@@ -1,5 +1,5 @@
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -26,6 +26,7 @@ body {
   margin: auto;
   box-sizing: border-box;
   min-width: 1024px;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {
