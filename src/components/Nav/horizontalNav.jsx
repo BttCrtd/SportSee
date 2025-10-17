@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import Logo from '../assets/logo.png'
+import Logo from '../../assets/logo.png'
 import styled from 'styled-components'
-import colors from '../utils/colors'
+import colors from '../../utils/colors'
 
-const NavWrapper = styled.div`
+const Header = styled.header`
   display: flex;
   flex-direction: row;
   background-color: ${colors.backgroundNav};
@@ -29,7 +29,7 @@ const StyledLink = styled(Link)`
 
 function HorizontalNav() {
   return (
-    <NavWrapper>
+    <Header>
       <StyledLogo src={Logo} alt="Logo SportSee" />
       <StyledNav>
         <StyledLink to="">Accueil</StyledLink>
@@ -37,7 +37,7 @@ function HorizontalNav() {
         <StyledLink to="">Réglage</StyledLink>
         <StyledLink to="">Communauté</StyledLink>
       </StyledNav>
-    </NavWrapper>
+    </Header>
   )
 }
 
