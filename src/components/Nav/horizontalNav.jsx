@@ -8,6 +8,7 @@ const Header = styled.header`
   flex-direction: row;
   background-color: ${colors.backgroundNav};
   padding: 18px 28px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 const StyledNav = styled.nav`
