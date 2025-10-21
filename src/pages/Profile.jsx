@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import BodyHeader from '../components/BodyHeader/BodyHeader'
 import NutritionStats from '../components/NutritionStats/NutritionStats'
 import SimpleBarChart from '../components/BarChart/BarChart'
+import SimpleRadarChart from '../components/Radar/Radar'
 import { useState, useEffect } from 'react'
 
 const Wrapper = styled.section`
@@ -37,6 +38,7 @@ function Profile() {
       <WrapperSecondary>
         <ChartWrapper>
           <SimpleBarChart />
+          <SimpleRadarChart />
         </ChartWrapper>
 
         <div>
