@@ -6,6 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  margin-bottom: 80px;
 `
 
 const Title = styled.h1`

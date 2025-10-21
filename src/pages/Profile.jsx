@@ -2,6 +2,7 @@ import './Profile.css'
 import styled from 'styled-components'
 import BodyHeader from '../components/BodyHeader/BodyHeader'
 import NutritionStats from '../components/NutritionStats/NutritionStats'
+import SimpleBarChart from '../components/BarChart/BarChart'
 import { useState, useEffect } from 'react'
 
 const Wrapper = styled.section`
@@ -12,6 +13,11 @@ const WrapperSecondary = styled.div`
   display: flex;
   flex-direction: row;
   gap: 32px;
+`
+
+const ChartWrapper = styled.div`
+  width: 100%;
+  box-sizing: border-box;
 `
 
 function Profile() {
@@ -29,11 +35,14 @@ function Profile() {
       <BodyHeader />
 
       <WrapperSecondary>
-        <div>
-          <h1>Graphique</h1>
-        </div>
+        <ChartWrapper>
+          <SimpleBarChart />
+        </ChartWrapper>
 
         <div>
+          {' '}
+          {/* gap 40px*/}
+          {/* Affichage des statistiques nutritionnelles */}
           {data.keyData ? (
             Object.values(data.keyData).map((value, index) => (
               <NutritionStats

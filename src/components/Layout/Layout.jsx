@@ -12,6 +12,9 @@ const BodyWrapper = styled.div`
   flex: 1;
   flex-direction: row;
 `
+const ChildrenWrapper = styled.div`
+  width: 100%;
+`
 
 function Layout({ children }) {
   return (
@@ -19,7 +22,7 @@ function Layout({ children }) {
       <HorizontalNav />
       <BodyWrapper>
         <SideNav />
-        <div>{children}</div>
+        <ChildrenWrapper>{children}</ChildrenWrapper>
       </BodyWrapper>
     </Wrapper>
   )

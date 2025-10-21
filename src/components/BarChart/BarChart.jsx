@@ -1,0 +1,253 @@
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
+import styled from 'styled-components'
+import colors from '../../utils/colors'
+
+const data = [
+  {
+    name: '1',
+    calories: 340,
+    weight: 68,
+  },
+  {
+    name: '2',
+    calories: 330,
+    weight: 69,
+  },
+  {
+    name: '3',
+    calories: 320,
+    weight: 70,
+  },
+  {
+    name: '4',
+    calories: 327,
+    weight: 70.5,
+  },
+  {
+    name: '5',
+    calories: 318,
+    weight: 69,
+  },
+  {
+    name: '6',
+    calories: 323,
+    weight: 68,
+  },
+  {
+    name: '7',
+    calories: 330,
+    weight: 69,
+  },
+
+  {
+    name: '8',
+    calories: 334,
+    weight: 70,
+  },
+  {
+    name: '9',
+    calories: 334,
+    weight: 70,
+  },
+  {
+    name: '10',
+    calories: 334,
+    weight: 69,
+  },
+]
+
+const TittleAndLegendWrapper = styled.div`
+  width: 100%;
+  height: 24px;
+  margin-bottom: 31px;
+  max-width: 777px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`
+const Title = styled.h2`
+  font-size: 15px;
+  font-weight: 500;
+  color: #20253a;
+`
+
+const LegendWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 32px;
+`
+
+const BarLegendeWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+`
+const BulleLegend1 = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 25px;
+  background-color: #282d30;
+`
+
+const BulleLegend2 = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 25px;
+  background-color: #e60000;
+`
+
+const Text = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  color: #74798c;
+`
+
+const CustomLegend = () => (
+  <TittleAndLegendWrapper>
+    <Title>Activité quotidienne</Title>
+    <LegendWrapper>
+      <BarLegendeWrapper>
+        <BulleLegend1></BulleLegend1>
+        <Text>Poids (kg)</Text>
+      </BarLegendeWrapper>
+      <BarLegendeWrapper>
+        <BulleLegend2></BulleLegend2>
+        <Text>Calories brûlées (kCal)</Text>
+      </BarLegendeWrapper>
+    </LegendWrapper>
+  </TittleAndLegendWrapper>
+)
+
+const CustomizedXAxisTick = (...args) => {
+  const { x, y, payload } = args[0]
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text x={0} y={0} dy={20} textAnchor="middle" fill="#9B9EAC">
+        {payload.value}
+      </text>
+    </g>
+  )
+}
+
+const CustomizedYAxisTick = (...args) => {
+  const { x, y, payload } = args[0]
+  return (
+    <g transform={`translate(${x},${y})`}>
+      <text x={0} y={0} dx={40} textAnchor="middle" fill="#9B9EAC">
+        {payload.value}
+      </text>
+    </g>
+  )
+}
+
+const ToolTipWrapper = styled.div`
+  width: 39px;
+  height: 63px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: ${colors.Redprimary};
+`
+
+const TipText = styled.p`
+  font-size: 7px;
+  font-weight: 500;
+  color: ${colors.white};
+`
+
+function CustomTooltip({ payload, active }) {
+  if (active) {
+    return (
+      <ToolTipWrapper>
+        <TipText className="label">{`${payload[0].value}`}kg</TipText>
+        <TipText className="intro">{`${payload[1].value}`}Kcal</TipText>
+      </ToolTipWrapper>
+    )
+  }
+}
+
+const ChartWrapper = styled.div`
+  max-width: 835px;
+  width: 100%;
+  padding: 24px 30px;
+  background-color: #fbfbfb;
+  border-radius: 5px;
+`
+
+const SimpleBarChart = () => {
+  return (
+    <ChartWrapper>
+      <CustomLegend />
+      <BarChart
+        style={{
+          width: '100%',
+          maxWidth: 777,
+          maxHeight: 217,
+          aspectRatio: 1.618,
+        }}
+        responsive
+        data={data}
+        margin={{
+          top: 0,
+          right: 0,
+          left: 0,
+          bottom: 0,
+        }}
+        barGap={8}
+      >
+        <CartesianGrid vertical={false} strokeDasharray="3 3" />
+        <XAxis
+          dataKey="name"
+          tick={CustomizedXAxisTick}
+          tickLine={false}
+          padding={{ left: 0, right: 0 }}
+          interval="preserveStartEnd"
+          axisLine={false}
+        />
+        <YAxis
+          yAxisId="right"
+          dataKey="weight"
+          orientation="right"
+          tick={CustomizedYAxisTick}
+          tickLine={false}
+          axisLine={false}
+          domain={[67, 72]}
+          maxHeight={145}
+        />
+        <YAxis
+          yAxisId="left"
+          dataKey="calories"
+          orientation="left"
+          tick={false}
+          tickLine={false}
+          axisLine={false}
+          domain={[300, 345]}
+          width={0}
+        />
+        <Tooltip content={<CustomTooltip />} />
+        <Bar
+          dataKey="weight"
+          yAxisId="right"
+          fill="#282D30"
+          radius={[3, 3, 0, 0]}
+          barSize={7}
+        />
+        <Bar
+          dataKey="calories"
+          yAxisId="left"
+          fill="#E60000"
+          radius={[3, 3, 0, 0]}
+          barSize={7}
+        />
+      </BarChart>
+    </ChartWrapper>
+  )
+}
+
+export default SimpleBarChart

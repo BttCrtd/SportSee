@@ -10,6 +10,8 @@ const StatsWrapper = styled.div`
   width: 258px;
   height: 124px;
   gap: 24px;
+  background-color: ${colors.background};
+  border-radius: 5px;
 `
 const IconWrapper = styled.div`
   display: flex;
