@@ -8,7 +8,9 @@ const GlobalStyle = createGlobalStyle`
     }
 
    body {
-        height: 100vh;
+      min-width: 1024px;
+      min-height: 780px;
+      height: 100vh;
     } 
 
     #root {
