@@ -32,6 +32,7 @@ const SecondaryText = styled.p`
   font-size: 14px;
   font-weight: 500;
   color: ${colors.grayPrimary};
+  min-width: 80px;
 `
 
 const TextWrapper = styled.div`

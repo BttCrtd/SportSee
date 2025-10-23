@@ -32,6 +32,12 @@ const ChartWrapper = styled.div`
   gap: 30px;
 `
 
+const NutritionStatsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
 function Profile() {
   const nutritionCategories = ['Calories', 'Proteines', 'Glucides', 'Lipides']
   const [data, setData] = useState({})
@@ -56,7 +62,7 @@ function Profile() {
           </SessionPerfScoreWrapper>
         </ChartWrapper>
 
-        <div>
+        <NutritionStatsWrapper>
           {' '}
           {/* gap 40px*/}
           {/* Affichage des statistiques nutritionnelles */}
@@ -71,7 +77,7 @@ function Profile() {
           ) : (
             <NutritionStats name={'Calorie'} stats={0} />
           )}
-        </div>
+        </NutritionStatsWrapper>
       </WrapperSecondary>
     </Wrapper>
   )
