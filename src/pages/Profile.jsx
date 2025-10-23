@@ -5,6 +5,7 @@ import NutritionStats from '../components/NutritionStats/NutritionStats'
 import SimpleBarChart from '../components/BarChart/BarChart'
 import SimpleRadarChart from '../components/Radar/Radar'
 import PieChartInFlexbox from '../components/Pie/Pie'
+import TinyLineChart from '../components/LineChart/LineChart'
 import { useState, useEffect } from 'react'
 
 const Wrapper = styled.section`
@@ -49,6 +50,7 @@ function Profile() {
         <ChartWrapper>
           <SimpleBarChart />
           <SessionPerfScoreWrapper>
+            <TinyLineChart />
             <SimpleRadarChart />
             <PieChartInFlexbox />
           </SessionPerfScoreWrapper>
