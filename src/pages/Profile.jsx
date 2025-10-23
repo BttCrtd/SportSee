@@ -4,6 +4,7 @@ import BodyHeader from '../components/BodyHeader/BodyHeader'
 import NutritionStats from '../components/NutritionStats/NutritionStats'
 import SimpleBarChart from '../components/BarChart/BarChart'
 import SimpleRadarChart from '../components/Radar/Radar'
+import PieChartInFlexbox from '../components/Pie/Pie'
 import { useState, useEffect } from 'react'
 
 const Wrapper = styled.section`
@@ -16,9 +17,18 @@ const WrapperSecondary = styled.div`
   gap: 32px;
 `
 
+const SessionPerfScoreWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+`
+
 const ChartWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 `
 
 function Profile() {
@@ -38,7 +48,10 @@ function Profile() {
       <WrapperSecondary>
         <ChartWrapper>
           <SimpleBarChart />
-          <SimpleRadarChart />
+          <SessionPerfScoreWrapper>
+            <SimpleRadarChart />
+            <PieChartInFlexbox />
+          </SessionPerfScoreWrapper>
         </ChartWrapper>
 
         <div>
