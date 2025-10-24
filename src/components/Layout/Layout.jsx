@@ -14,6 +14,9 @@ const BodyWrapper = styled.div`
 `
 const ChildrenWrapper = styled.div`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 function Layout({ children }) {

@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react'
 import colors from '../../utils/colors'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 20px;
   margin-bottom: 80px;
 `
 
@@ -24,23 +23,15 @@ const Text = styled.p`
   color: ${colors.black};
 `
 
-function BodyHeader() {
-  const [data, setData] = useState({})
-
-  useEffect(() => {
-    fetch('http://localhost:3000/user/12')
-      .then((response) => response.json())
-      .then((json) => setData(json.data))
-  }, [])
-
+function PersonalDashboard({ name = 'Thomas' }) {
   return (
     <Wrapper>
       <Title>
-        Bonjour <StyledName>{data.userInfos?.firstName}</StyledName>
+        Bonjour <StyledName>{name}</StyledName>
       </Title>
       <Text>Félicitation ! Vous avez explosé vos objectifs hier 👏</Text>
     </Wrapper>
   )
 }
 
-export default BodyHeader
+export default PersonalDashboard

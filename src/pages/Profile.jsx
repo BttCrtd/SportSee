@@ -1,6 +1,6 @@
 import './Profile.css'
 import styled from 'styled-components'
-import BodyHeader from '../components/BodyHeader/BodyHeader'
+import PersonalDashboard from '../components/PersonalDashboard/PersonalDashboard'
 import NutritionStats from '../components/NutritionStats/NutritionStats'
 import SimpleBarChart from '../components/BarChart/BarChart'
 import SimpleRadarChart from '../components/Radar/Radar'
@@ -9,7 +9,9 @@ import TinyLineChart from '../components/LineChart/LineChart'
 import { useState, useEffect } from 'react'
 
 const Wrapper = styled.section`
-  padding: 64px 107px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 `
 
 const WrapperSecondary = styled.div`
@@ -50,7 +52,7 @@ function Profile() {
 
   return (
     <Wrapper>
-      <BodyHeader />
+      <PersonalDashboard name={data.userInfos?.firstName} />
 
       <WrapperSecondary>
         <ChartWrapper>
