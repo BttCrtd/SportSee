@@ -1,4 +1,4 @@
-import { PieChart, Pie, Label } from 'recharts'
+import { PieChart, Pie, Label, ResponsiveContainer } from 'recharts'
 import styled from 'styled-components'
 
 const data = [
@@ -58,8 +58,8 @@ export default function PieChartInFlexbox() {
       style={{
         display: 'flex',
         flexWrap: 'wrap',
-        width: '258px',
-        height: '263px',
+        width: '100%',
+
         padding: '22px',
         alignItems: 'stretch',
         backgroundColor: '#FBFBFB',
@@ -67,29 +67,28 @@ export default function PieChartInFlexbox() {
       }}
     >
       <Title>Score</Title>
-      <PieChart
-        responsive
-        style={{
-          height: '100%',
-          width: '100%',
-          flex: '1 1 200px',
-          aspectRatio: 1,
-        }}
-      >
-        <Pie
-          data={data}
-          dataKey="value"
-          nameKey="name"
-          outerRadius="90%"
-          innerRadius="80%"
-          isAnimationActive={false}
-          cornerRadius={50}
-          startAngle={90}
-          endAngle={450}
-        >
-          <Label content={<CustomLabel score={data[0].value} />} />
-        </Pie>
-      </PieChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <PieChart responsive width="100%" height="100%">
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            outerRadius="90%"
+            innerRadius="80%"
+            isAnimationActive={false}
+            cornerRadius={50}
+            startAngle={90}
+            endAngle={450}
+          >
+            <Label
+              position="middle"
+              content={(props) => (
+                <CustomLabel {...props} score={data[0].value} />
+              )}
+            />
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
+  ResponsiveContainer,
 } from 'recharts'
 
 import { useEffect, useState } from 'react'
@@ -12,7 +13,7 @@ const SimpleRadarChart = () => {
   const [radarData, setRadarData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/12/performance')
+    fetch('http://localhost:3000/user/18/performance')
       .then((response) => response.json())
       .then((json) => {
         const kindRadar = json.data.kind
@@ -28,39 +29,42 @@ const SimpleRadarChart = () => {
   }, [])
 
   return (
-    <RadarChart
+    <div
       style={{
         width: '100%',
-        maxWidth: '258px',
-        maxHeight: '263px',
-        aspectRatio: 1,
+        aspectRatio: '1 / 1',
         backgroundColor: '#282D30',
         borderRadius: 5,
       }}
-      responsive
-      outerRadius="80%"
-      data={radarData}
-      margin={{
-        top: 20,
-        left: 20,
-        right: 20,
-        bottom: 20,
-      }}
     >
-      <PolarGrid color="#ffffffff" stroke="#ffffffff" radialLines={false} />
-      <PolarAngleAxis
-        dataKey="subject"
-        tick={{ fontSize: 12, fill: '#ffffffff' }}
-      />
-      <PolarRadiusAxis axisLine={false} tick={false} tickCount={6} />
-      <Radar
-        name="Mike"
-        dataKey="A"
-        stroke="transparents"
-        fill="#FF0101B2"
-        fillOpacity={0.7}
-      />
-    </RadarChart>
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          responsive
+          outerRadius="70%"
+          data={radarData}
+          margin={{
+            top: 20,
+            left: 20,
+            right: 40,
+            bottom: 20,
+          }}
+        >
+          <PolarGrid color="#ffffffff" stroke="#ffffffff" radialLines={false} />
+          <PolarAngleAxis
+            dataKey="subject"
+            tick={{ fontSize: 12, fill: '#ffffffff' }}
+          />
+          <PolarRadiusAxis axisLine={false} tick={false} tickCount={6} />
+          <Radar
+            name="Mike"
+            dataKey="A"
+            stroke="transparents"
+            fill="#FF0101B2"
+            fillOpacity={0.7}
+          />
+        </RadarChart>
+      </ResponsiveContainer>
+    </div>
   )
 }
 

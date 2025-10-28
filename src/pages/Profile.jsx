@@ -9,6 +9,7 @@ import TinyLineChart from '../components/LineChart/LineChart'
 import { useState, useEffect } from 'react'
 
 const Wrapper = styled.section`
+  width: 80%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -21,9 +22,11 @@ const WrapperSecondary = styled.div`
 `
 
 const SessionPerfScoreWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  height: 100%;
+  gap: 1rem;
 `
 
 const ChartWrapper = styled.div`
