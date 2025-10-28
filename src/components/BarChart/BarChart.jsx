@@ -9,60 +9,7 @@ import {
 } from 'recharts'
 import styled from 'styled-components'
 import colors from '../../utils/colors'
-
-const data = [
-  {
-    name: '1',
-    calories: 340,
-    weight: 68,
-  },
-  {
-    name: '2',
-    calories: 330,
-    weight: 69,
-  },
-  {
-    name: '3',
-    calories: 320,
-    weight: 70,
-  },
-  {
-    name: '4',
-    calories: 327,
-    weight: 70,
-  },
-  {
-    name: '5',
-    calories: 318,
-    weight: 69,
-  },
-  {
-    name: '6',
-    calories: 323,
-    weight: 68,
-  },
-  {
-    name: '7',
-    calories: 330,
-    weight: 69,
-  },
-
-  {
-    name: '8',
-    calories: 334,
-    weight: 70,
-  },
-  {
-    name: '9',
-    calories: 334,
-    weight: 70,
-  },
-  {
-    name: '10',
-    calories: 334,
-    weight: 69,
-  },
-]
+import { useState, useEffect } from 'react'
 
 const TittleAndLegendWrapper = styled.div`
   width: 100%;
@@ -145,7 +92,7 @@ const CustomizedYAxisTick = (...args) => {
   const { x, y, payload } = args[0]
   return (
     <g transform={`translate(${x},${y})`}>
-      <text x={0} y={5} dx={40} textAnchor="middle" fill="#9B9EAC">
+      <text x={0} y={5} dx={37} textAnchor="middle" fill="#9B9EAC">
         {payload.value}
       </text>
     </g>
@@ -168,10 +115,18 @@ const TipText = styled.p`
   color: ${colors.white};
 `
 
-function CustomTooltip({ payload, active }) {
+function CustomTooltip({ payload, active, coordinate }) {
   if (active) {
     return (
-      <ToolTipWrapper>
+      <ToolTipWrapper
+        style={{
+          position: 'absolute',
+          top: coordinate.y - 60,
+          left: coordinate.x + 35,
+          pointerEvents: 'none',
+          zIndex: 9999,
+        }}
+      >
         <TipText className="label">{`${payload[0].value}`}kg</TipText>
         <TipText className="intro">{`${payload[1].value}`}Kcal</TipText>
       </ToolTipWrapper>
@@ -188,6 +143,26 @@ const ChartWrapper = styled.div`
 `
 
 const SimpleBarChart = () => {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/user/18/activity')
+      .then((response) => response.json())
+      .then((json) => {
+        const formattedData = json.data.sessions.map((session, index) => ({
+          name: index + 1,
+          weight: session.kilogram,
+          calories: session.calories,
+        }))
+        setData(formattedData)
+      })
+  }, [])
+
+  const minWeight = Math.min(...data.map((item) => item.weight))
+  const maxWeight = Math.max(...data.map((item) => item.weight))
+  const step = (maxWeight - minWeight) / 2
+  const ticks = [minWeight - 1, minWeight + step, maxWeight + 1]
+
   return (
     <ChartWrapper>
       <CustomLegend />
@@ -210,7 +185,7 @@ const SimpleBarChart = () => {
             dataKey="name"
             tick={CustomizedXAxisTick}
             tickLine={false}
-            axisLine={{ stroke: '#DEDEDE', strokeWidth: 2 }}
+            axisLine={{ stroke: '#DEDEDE', strokeWidth: 1 }}
             padding={{ left: -21, right: -22 }}
             interval={0}
           />
@@ -219,7 +194,7 @@ const SimpleBarChart = () => {
             yAxisId="right"
             dataKey="weight"
             orientation="right"
-            tickCount={3}
+            ticks={ticks}
             tick={CustomizedYAxisTick}
             tickLine={false}
             axisLine={false}
@@ -233,7 +208,7 @@ const SimpleBarChart = () => {
             tick={CustomizedYAxisTick}
             tickLine={false}
             axisLine={false}
-            domain={['dataMin -10', 'dataMax + 10']}
+            domain={['dataMin - 50', 'dataMax + 50']}
             width={0}
           />
 
