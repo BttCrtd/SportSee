@@ -1,4 +1,3 @@
-import './Profile.css'
 import styled from 'styled-components'
 import PersonalDashboard from '../components/PersonalDashboard/PersonalDashboard'
 import NutritionStats from '../components/NutritionStats/NutritionStats'
@@ -43,7 +42,7 @@ const NutritionStatsWrapper = styled.div`
   justify-content: space-between;
 `
 
-function Profile() {
+function Profil() {
   const nutritionCategories = ['Calories', 'Proteines', 'Glucides', 'Lipides']
   const [data, setData] = useState({})
 
@@ -88,4 +87,4 @@ function Profile() {
   )
 }
 
-export default Profile
+export default Profil

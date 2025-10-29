@@ -37,10 +37,10 @@ function HorizontalNav() {
     <Header>
       <StyledLogo src={Logo} alt="Logo SportSee" />
       <StyledNav>
-        <StyledLink to="">Accueil</StyledLink>
-        <StyledLink to="">Profil</StyledLink>
-        <StyledLink to="">Réglage</StyledLink>
-        <StyledLink to="">Communauté</StyledLink>
+        <StyledLink to="/">Accueil</StyledLink>
+        <StyledLink to="/profil">Profil</StyledLink>
+        <StyledLink to="/réglage">Réglage</StyledLink>
+        <StyledLink to="/communauté">Communauté</StyledLink>
       </StyledNav>
     </Header>
   )
