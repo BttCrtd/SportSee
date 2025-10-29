@@ -4,6 +4,10 @@ import styled from 'styled-components'
 import colors from '../../utils/colors'
 
 const Header = styled.header`
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 91px;
   display: flex;
   flex-direction: row;
   background-color: ${colors.backgroundNav};

@@ -7,13 +7,16 @@ import BikeIcon from '../../assets/bike.svg'
 import MuscuIcon from '../../assets/muscu.svg'
 
 const NavWrapper = styled.div`
+  position: fixed;
   background-color: ${colors.backgroundNav};
-  height: 100%;
+  height: calc(100% - 91px);
+  width: 117px;
   display: inline-flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 18px 28px;
+  padding: 60px 28px;
+  margin-top: 91px;
 `
 
 const StyledSideNav = styled.nav`

@@ -17,6 +17,8 @@ const ChildrenWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 117px;
+  margin-top: 100px;
 `
 
 function Layout({ children }) {
