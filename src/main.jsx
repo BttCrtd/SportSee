@@ -7,19 +7,22 @@ import Seting from './pages/Seting'
 import Community from './pages/Community'
 import Layout from './components/Layout/Layout'
 import GlobalStyle from './utils/style/GlobalStyle'
+import { UserProvider } from './utils/context/context'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Router>
-      <GlobalStyle />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/profil" element={<Profil />} />
-          <Route path="/réglage" element={<Seting />} />
-          <Route path="/communauté" element={<Community />} />
-        </Routes>
-      </Layout>
+      <UserProvider>
+        <GlobalStyle />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/profil/:userId" element={<Profil />} />
+            <Route path="/réglage" element={<Seting />} />
+            <Route path="/communauté" element={<Community />} />
+          </Routes>
+        </Layout>
+      </UserProvider>
     </Router>
   </StrictMode>
 )

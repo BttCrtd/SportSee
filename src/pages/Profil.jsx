@@ -6,6 +6,7 @@ import SimpleRadarChart from '../components/Radar/Radar'
 import PieChartInFlexbox from '../components/Pie/Pie'
 import TinyLineChart from '../components/LineChart/LineChart'
 import { useState, useEffect } from 'react'
+import { useUser } from '../utils/useUser'
 
 const Wrapper = styled.section`
   width: 80%;
@@ -43,14 +44,15 @@ const NutritionStatsWrapper = styled.div`
 `
 
 function Profil() {
+  const { userId } = useUser()
   const nutritionCategories = ['Calories', 'Proteines', 'Glucides', 'Lipides']
   const [data, setData] = useState({})
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/12')
+    fetch(`http://localhost:3000/user/${userId}`)
       .then((response) => response.json())
       .then((json) => setData(json.data))
-  }, [])
+  }, [userId])
 
   return (
     <Wrapper>

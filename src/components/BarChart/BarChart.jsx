@@ -10,6 +10,7 @@ import {
 import styled from 'styled-components'
 import colors from '../../utils/colors'
 import { useState, useEffect } from 'react'
+import { useUser } from '../../utils/useUser'
 
 const TittleAndLegendWrapper = styled.div`
   width: 100%;
@@ -143,10 +144,11 @@ const ChartWrapper = styled.div`
 `
 
 const SimpleBarChart = () => {
+  const { userId } = useUser()
   const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/18/activity')
+    fetch(`http://localhost:3000/user/${userId}/activity`)
       .then((response) => response.json())
       .then((json) => {
         const formattedData = json.data.sessions.map((session, index) => ({
@@ -156,7 +158,7 @@ const SimpleBarChart = () => {
         }))
         setData(formattedData)
       })
-  }, [])
+  }, [userId])
 
   const minWeight = Math.min(...data.map((item) => item.weight))
   const maxWeight = Math.max(...data.map((item) => item.weight))
@@ -166,7 +168,6 @@ const SimpleBarChart = () => {
   return (
     <ChartWrapper>
       <CustomLegend />
-
       <ResponsiveContainer width="100%" height={217}>
         <BarChart
           data={data}

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import Logo from '../../assets/logo.png'
 import styled from 'styled-components'
 import colors from '../../utils/colors'
+import { useUser } from '../../utils/useUser'
 
 const Header = styled.header`
   position: fixed;
@@ -33,12 +34,13 @@ const StyledLink = styled(Link)`
 `
 
 function HorizontalNav() {
+  const { userId } = useUser()
   return (
     <Header>
       <StyledLogo src={Logo} alt="Logo SportSee" />
       <StyledNav>
         <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/profil">Profil</StyledLink>
+        <StyledLink to={`/profil/${userId}`}>Profil</StyledLink>
         <StyledLink to="/réglage">Réglage</StyledLink>
         <StyledLink to="/communauté">Communauté</StyledLink>
       </StyledNav>

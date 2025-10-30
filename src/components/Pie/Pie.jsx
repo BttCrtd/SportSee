@@ -1,10 +1,7 @@
 import { PieChart, Pie, Label, ResponsiveContainer } from 'recharts'
 import styled from 'styled-components'
-
-const data = [
-  { name: 'score', value: 40, fill: '#FF0000' },
-  { name: 'rest', value: 60, fill: '#FBFBFB' },
-]
+import { useUser } from '../../utils/useUser'
+import { useState, useEffect } from 'react'
 
 const Title = styled.h2`
   font-size: 15px;
@@ -53,13 +50,34 @@ const CustomLabel = ({ viewBox, score }) => {
 }
 
 export default function PieChartInFlexbox() {
+  const { userId } = useUser()
+  const [score, setScore] = useState(null)
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/user/${userId}`)
+      .then((response) => response.json())
+      .then((json) => {
+        const userData = json.data
+        const scoreValue = userData.score || userData.todayScore || 0
+        setScore(scoreValue)
+      })
+      .catch((error) => console.error('Error fetching user score:', error))
+  }, [userId])
+
+  if (score === null) {
+    return <div>Loading...</div>
+  }
+
+  const data = [
+    { name: 'score', value: score * 100, fill: '#FF0000' },
+    { name: 'rest', value: 100 - score * 100, fill: '#FBFBFB' },
+  ]
   return (
     <div
       style={{
         display: 'flex',
         flexWrap: 'wrap',
         width: '100%',
-
         padding: '22px',
         alignItems: 'stretch',
         backgroundColor: '#FBFBFB',

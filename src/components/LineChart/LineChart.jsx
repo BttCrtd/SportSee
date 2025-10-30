@@ -10,6 +10,7 @@ import {
 } from 'recharts'
 import styled from 'styled-components'
 import { useState, useEffect } from 'react'
+import { useUser } from '../../utils/useUser'
 
 const TitleWrapper = styled.div`
   margin-top: 30px;
@@ -62,11 +63,12 @@ const LineChartWrapper = styled.div`
 `
 
 export default function TinyLineChart() {
+  const { userId } = useUser()
   const [activeIndex, setActiveIndex] = useState(null)
   const [data, setData] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/12/average-sessions')
+    fetch(`http://localhost:3000/user/${userId}/average-sessions`)
       .then((response) => response.json())
       .then((json) => {
         const formattedData = json.data.sessions.map((session, index) => ({
@@ -76,7 +78,7 @@ export default function TinyLineChart() {
         setData(formattedData)
       })
       .catch((error) => console.log(error))
-  }, [])
+  }, [userId])
 
   const yMin = Math.min(...data.map((d) => d.sessionLenght))
   const yMax = Math.max(...data.map((d) => d.sessionLenght))
