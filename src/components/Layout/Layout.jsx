@@ -19,6 +19,7 @@ const ChildrenWrapper = styled.div`
   align-items: center;
   margin-left: 117px;
   margin-top: 100px;
+  padding: 30px 0;
 `
 
 function Layout({ children }) {
