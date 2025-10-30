@@ -1,7 +1,5 @@
 # README FR
 
---
-
 ## SportSee — Tableau de bord d’analyse sportive SportSee
 
 Il s’agit d’un tableau de bord sportif développé en React (Vite), connecté à une API Node.js, permettant de visualiser les performances d’un utilisateur à travers des graphiques interactifs.
