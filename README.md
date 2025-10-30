@@ -1,20 +1,42 @@
-<<<<<<< HEAD
-# SportSee
-=======
-# React + Vite
+# README
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Prérequis :
 
-Currently, two official plugins are available:
+Avant d'installer le projet, assurez vous d'avoir:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Git
+- Node.JS (version 12.18 ou supérieure)
+- npm
 
-## React Compiler
+### Installation et lancement du Frontend :
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Cloner le dépôt:
 
-## Expanding the ESLint configuration
+```bash
+        git clone https://github.com/BttCrtd/SportSee.git
+        cd SportSee
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 2789919 (First Commit)
+2. Installer les dépendances:
+
+```bash
+        npm install
+```
+
+3. Lancer le projet:
+
+```bash
+        npm run dev
+```
+
+Le serveur de développement Vite se lancera et affichera dans le terminal l’URL locale permettant d’accéder à l’application.
+
+Exemple :
+
+```bash
+        http://localhost:5173/
+```
+
+### Installation et lancement du Backend :
+
+Suivre les instruction du README du dépôt du backend : https://github.com/OpenClassrooms-Student-Center/SportSee#41-possible-endpoints
